@@ -14,6 +14,9 @@ console.log(b);
 //2. 数组
 let arr: number[] = [1, 2, 3];
 console.log(arr[1]);
+//泛型数组
+let arr2:Array<number>=[4,5];
+console.log(arr2[0]);
 
 //3.元组
 let p: [string, number] = ['cts', 18]
@@ -47,6 +50,11 @@ function add(a: number, b: number): number {
 }
 add(1, 2);
 
+//函数变量写法2
+let myAdd: (x: number, y: number) => number =add;
+    //function(x: number, y: number): number { return x + y; };
+myAdd(1,5);
+
 //6.类
 class Teacher {
     name: string;
@@ -67,7 +75,7 @@ class Teacher {
 
 let t: Teacher = new Teacher('121', 1);
 t.d=12;
-console.log(t.sayHello());
+t.sayHello();
 
 //7.泛型
 function toArray<T>(arg: T): T[] {
@@ -78,17 +86,31 @@ let array = toArray<number>(1);
 console.log(array);
 
 //泛型2
-/*let users: string[];
+let users: string[];
 interface UserBLL<T> {
-    add: (arr: T) => {
-    };
+    add: (arr: T) => void;
     get: () => T;
 }
 
-declare const userBLL: UserBLL<string>;
-userBLL.add('1123');
-const object = userBLL.get();
-*/
+// declare let userBLL: UserBLL<string>;
+// userBLL.add=function (a:string):void{
+//     console.log(a+"添加成功");    
+// };
+// userBLL.add("hh");
+
+let userBLL: UserBLL<string>={
+    add:function (a:string):void{
+        console.log(a+"添加成功");    
+    },
+    get:function():string{
+        return "哈哈";
+    }
+}
+userBLL.add("hh");
+console.log(userBLL.get());
+
+//const object = userBLL.get();
+
 
 //8.联合类型
 type WindowStates = "open" | "closed" | "minimized";
@@ -105,3 +127,8 @@ function logPoint(p: Point) {
 }
 const p1:Point={X:1,Y:2};
 logPoint(p1);
+
+//10.枚举
+enum color{Red,Green,Yellow};
+let c:color=color.Green;
+console.log(c);

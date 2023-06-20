@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //模块化导入
 var _03Module_Export_1 = __importStar(require("./03Module_Export"));
 var _03Module_Export_2 = __importDefault(require("./03Module_Export")); //等同{default as d}
+var d4 = __importStar(require("./03Module_Export"));
 //基础类型
 var t1 = _03Module_Export_1.t;
 t1 = '122';
@@ -44,3 +45,5 @@ _03Module_Export_2.default.name = 'rose3';
 //d 和d3指向同一个实例。所以d和d3的name都是rose3;
 _03Module_Export_1.default.sayHello();
 _03Module_Export_2.default.sayHello();
+//通过 * as d4 导入所有并重命名
+d4.fun('导入所有', 15);

@@ -13,6 +13,9 @@ console.log(b);
 //2. 数组
 var arr = [1, 2, 3];
 console.log(arr[1]);
+//泛型数组
+var arr2 = [4, 5];
+console.log(arr2[0]);
 //3.元组
 var p = ['cts', 18];
 var Student = {
@@ -33,6 +36,10 @@ function add(a, b) {
     return a + b;
 }
 add(1, 2);
+//函数变量写法2
+var myAdd = add;
+//function(x: number, y: number): number { return x + y; };
+myAdd(1, 5);
 //6.类
 var Teacher = /** @class */ (function () {
     function Teacher(name, age) {
@@ -49,15 +56,42 @@ var Teacher = /** @class */ (function () {
 }());
 var t = new Teacher('121', 1);
 t.d = 12;
-console.log(t.sayHello());
+t.sayHello();
 //7.泛型
 function toArray(arg) {
     return [arg];
 }
 var array = toArray(1);
 console.log(array);
+//泛型2
+var users;
+// declare let userBLL: UserBLL<string>;
+// userBLL.add=function (a:string):void{
+//     console.log(a+"添加成功");    
+// };
+// userBLL.add("hh");
+var userBLL = {
+    add: function (a) {
+        console.log(a + "添加成功");
+    },
+    get: function () {
+        return "哈哈";
+    }
+};
+userBLL.add("hh");
+console.log(userBLL.get());
 function logPoint(p) {
     console.log("X:".concat(p.X, ",Y:").concat(p.Y));
 }
 var p1 = { X: 1, Y: 2 };
 logPoint(p1);
+//10.枚举
+var color;
+(function (color) {
+    color[color["Red"] = 0] = "Red";
+    color[color["Green"] = 1] = "Green";
+    color[color["Yellow"] = 2] = "Yellow";
+})(color || (color = {}));
+;
+var c = color.Green;
+console.log(c);
