@@ -1,9 +1,15 @@
+//模块化导出
+
+//基础类型
 export let t: number = 1;
- let fun = function (name: string, age: number): void {
+
+//函数
+let fun = function (name: string, age: number): void {
     console.log(`name:${name},age:${age}`);
 }
 export {fun};
 
+//类
 export class User2{
     name:string;
     age:number;
@@ -19,5 +25,7 @@ export class User2{
     }
 }
 
+
+//类实例
 let u2:User2=new User2('rose',18);
 export default u2;
