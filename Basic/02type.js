@@ -15,12 +15,19 @@ var arr = [1, 2, 3];
 console.log(arr[1]);
 //3.元组
 var p = ['cts', 18];
-//使用了hello.ts 的接口
 var Student = {
-    id: 1,
+    id: 123,
     name: 'jack',
     age: 23
 };
+// ---方法参数使用接口---
+function getAdminUser() {
+    return Student;
+}
+function deleteUser(user) {
+    // ...
+}
+deleteUser(Student);
 //5.函数
 function add(a, b) {
     return a + b;
@@ -34,13 +41,23 @@ var Teacher = /** @class */ (function () {
     }
     Teacher.prototype.sayHello = function () {
         console.log("name:".concat(this.name, ",age:").concat(this.age));
+        [1, 2, 3].forEach(function (e) {
+            console.log(e);
+        });
     };
     return Teacher;
 }());
 var t = new Teacher('121', 1);
+t.d = 12;
 console.log(t.sayHello());
 //7.泛型
 function toArray(arg) {
     return [arg];
 }
-var array = toArray(5);
+var array = toArray(1);
+console.log(array);
+function logPoint(p) {
+    console.log("X:".concat(p.X, ",Y:").concat(p.Y));
+}
+var p1 = { X: 1, Y: 2 };
+logPoint(p1);

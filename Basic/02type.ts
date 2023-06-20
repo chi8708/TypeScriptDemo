@@ -19,16 +19,27 @@ console.log(arr[1]);
 let p: [string, number] = ['cts', 18]
 
 //4.接口和对象
-interface Person {
+interface User {
     name: string,
-    age: number
+    age: number,
+    readonly id:number,
+    address?:string
 }
-//使用了hello.ts 的接口
-let Student: Person = {
-    id: 1,
+
+let Student: User = {
+    id:123,
     name: 'jack',
     age: 23
 }
+// ---方法参数使用接口---
+function getAdminUser(): User {
+    return Student;
+}
+
+function deleteUser(user: User) {
+    // ...
+}
+deleteUser(Student);
 
 //5.函数
 function add(a: number, b: number): number {
@@ -40,7 +51,7 @@ add(1, 2);
 class Teacher {
     name: string;
     age: number;
-
+    [propName: string]: any;//可以添加任意属性
     constructor(name: string, age: number) {
         this.name = name;
         this.age = age;
@@ -48,10 +59,14 @@ class Teacher {
 
     sayHello(): void {
         console.log(`name:${this.name},age:${this.age}`);
+        [1,2,3].forEach(e => {
+            console.log(e);
+        });
     }
 }
 
-let t:Teacher=new Teacher('121',1);
+let t: Teacher = new Teacher('121', 1);
+t.d=12;
 console.log(t.sayHello());
 
 //7.泛型
@@ -59,4 +74,34 @@ function toArray<T>(arg: T): T[] {
     return [arg];
 }
 
-let array = toArray<number>(5);
+let array = toArray<number>(1);
+console.log(array);
+
+//泛型2
+/*let users: string[];
+interface UserBLL<T> {
+    add: (arr: T) => {
+    };
+    get: () => T;
+}
+
+declare const userBLL: UserBLL<string>;
+userBLL.add('1123');
+const object = userBLL.get();
+*/
+
+//8.联合类型
+type WindowStates = "open" | "closed" | "minimized";
+type LockStates = "locked" | "unlocked";
+type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
+
+//9.结构体
+interface Point {
+    X: number;
+    Y: number;
+}
+function logPoint(p: Point) {
+    console.log(`X:${p.X},Y:${p.Y}`);
+}
+const p1:Point={X:1,Y:2};
+logPoint(p1);
