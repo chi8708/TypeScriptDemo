@@ -1,5 +1,5 @@
-import fetch from 'node-fetch';
-let makeRequest= function (url: string, method: string, data?: any): Promise<any> {
+import fetch from 'node-fetch';//报错 使用npm install node-fetch@2
+export function makeRequest(url: string, method: string, data?: any): Promise<any> {
     const options: any = {
       method: method,
       headers: {
@@ -13,7 +13,7 @@ let makeRequest= function (url: string, method: string, data?: any): Promise<any
   
     return fetch(url,options)
       .then((response:any) => {
-        console.log(response);
+        //console.log(response);
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -24,4 +24,4 @@ let makeRequest= function (url: string, method: string, data?: any): Promise<any
       });
   }
   
-  export{makeRequest}
+  //export{makeRequest}
