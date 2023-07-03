@@ -4,6 +4,9 @@
 // boolean：表示布尔类型，例如：let isReady: boolean = true;
 // null 和 undefined：表示空值类型，例如：let data: null = null;
 // object：表示对象类型，例如：let person: object = { name: "John", age: 25 };
+
+import { fun } from "./03Module_Export";
+
 // symbol：表示唯一的符号类型，例如：let id: symbol = Symbol("id");
 let a: string = 'hello ts';
 console.log(a);
@@ -132,3 +135,11 @@ logPoint(p1);
 enum color{Red,Green,Yellow};
 let c:color=color.Green;
 console.log(c);
+
+//declare 全局声明
+// declare let myGlobal: string;
+// myGlobal='1234';
+// console.log(myGlobal); 
+
+// declare function myFunction(arg:string):number;
+// const a1=myFunction('123');
