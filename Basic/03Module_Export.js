@@ -24,3 +24,4 @@ exports.User2 = User2;
 //类实例
 var u2 = new User2('rose', 18);
 exports.default = u2;
+
