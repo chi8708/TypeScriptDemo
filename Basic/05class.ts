@@ -12,6 +12,9 @@ class Person05 {
     sayHello() {
         console.log(`name:${this.name},age:${this.age}`);
     }
+     getName=(name:string):string=>{
+        return name;
+    }
 }
 
 //继承
@@ -63,6 +66,7 @@ function PropHander<T>(T: Object, prop: keyof T) {
 let coder = new Coder('jack', 12, true);
 coder.sayHello();
 coder.Code();
+coder.getName('122');
 
 let bll = new CoderBLL();
 bll.add(coder, 'http://www.qq.com')
