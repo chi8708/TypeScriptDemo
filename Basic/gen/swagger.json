@@ -1,0 +1,2587 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "CNet API",
+      "description": "CNet基础框架API",
+      "version": "v1"
+    },
+    "paths": {
+      "/api/Authroize": {
+        "post": {
+          "tags": [
+            "Authroize"
+          ],
+          "summary": "登录获取token",
+          "requestBody": {
+            "description": "登录实体信息",
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginViewModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginViewModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginViewModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginViewModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/Authroize/isCaptcha": {
+        "get": {
+          "tags": [
+            "Authroize"
+          ],
+          "summary": "是否开启验证码",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanIResultOutput"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanIResultOutput"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanIResultOutput"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/Authroize/GetUserMenu": {
+        "post": {
+          "tags": [
+            "Authroize"
+          ],
+          "summary": "获取菜单",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pub_FunctionListIResultOutput"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pub_FunctionListIResultOutput"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pub_FunctionListIResultOutput"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/Authroize/GetUserAccess": {
+        "post": {
+          "tags": [
+            "Authroize"
+          ],
+          "summary": "获取菜单",
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/admin/Captcha/generate": {
+        "post": {
+          "tags": [
+            "Captcha"
+          ],
+          "summary": "生成",
+          "parameters": [
+            {
+              "name": "captchaId",
+              "in": "query",
+              "description": "验证码id",
+              "schema": {
+                "type": "string",
+                "description": "验证码id",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CaptchaDataIResultOutput"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/Captcha/check": {
+        "post": {
+          "tags": [
+            "Captcha"
+          ],
+          "summary": "验证",
+          "parameters": [
+            {
+              "name": "captchaId",
+              "in": "query",
+              "description": "验证码id",
+              "schema": {
+                "type": "string",
+                "description": "验证码id",
+                "nullable": true
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "滑动轨迹",
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SlideTrack"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SlideTrack"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SlideTrack"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SlideTrack"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ValidateResultIResultOutput"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubDept/GetList": {
+        "post": {
+          "tags": [
+            "PubDept"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pub_DepartmentListDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubDept/GetChildList": {
+        "post": {
+          "tags": [
+            "PubDept"
+          ],
+          "summary": "获取子部门列表",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "default": "D000001",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/V_Pubdept_ParentListDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubDept/GetChildList/{code}": {
+        "post": {
+          "tags": [
+            "PubDept"
+          ],
+          "summary": "获取子部门列表",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "default": "D000001",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/V_Pubdept_ParentListDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubDept/Add": {
+        "post": {
+          "tags": [
+            "PubDept"
+          ],
+          "summary": "添加",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Department"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Department"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Department"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Department"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubDept/Edit": {
+        "post": {
+          "tags": [
+            "PubDept"
+          ],
+          "summary": "编辑",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Department"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Department"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Department"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Department"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubDept/Delete/{id}": {
+        "post": {
+          "tags": [
+            "PubDept"
+          ],
+          "summary": "删除",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubFunction/GetList": {
+        "post": {
+          "tags": [
+            "PubFunction"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pub_FunctionListDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubFunction/GetChildList": {
+        "post": {
+          "tags": [
+            "PubFunction"
+          ],
+          "summary": "获取子权限列表",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "default": "FC001",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/V_Pubfunction_ParentListDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubFunction/GetChildList/{code}": {
+        "post": {
+          "tags": [
+            "PubFunction"
+          ],
+          "summary": "获取子权限列表",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "default": "FC001",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/V_Pubfunction_ParentListDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubFunction/Add": {
+        "post": {
+          "tags": [
+            "PubFunction"
+          ],
+          "summary": "添加",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Function"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Function"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Function"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Function"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubFunction/Edit": {
+        "post": {
+          "tags": [
+            "PubFunction"
+          ],
+          "summary": "编辑",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Function"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Function"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Function"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Function"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubFunction/Delete/{id}": {
+        "post": {
+          "tags": [
+            "PubFunction"
+          ],
+          "summary": "删除",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubFunction/GetMenu": {
+        "post": {
+          "tags": [
+            "PubFunction"
+          ],
+          "summary": "获取左侧菜单",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MenuListDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubRole/GetList": {
+        "post": {
+          "tags": [
+            "PubRole"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pub_RoleListDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubRole/GetPage": {
+        "post": {
+          "tags": [
+            "PubRole"
+          ],
+          "summary": "获取角色分页",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataReq"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataReq"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataReq"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataReq"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pub_RolePageDateRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubRole/Add": {
+        "post": {
+          "tags": [
+            "PubRole"
+          ],
+          "summary": "添加角色",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Role"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Role"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Role"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Role"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubRole/Edit": {
+        "post": {
+          "tags": [
+            "PubRole"
+          ],
+          "summary": "编辑角色",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Role"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Role"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Role"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_Role"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubRole/Delete/{id}": {
+        "post": {
+          "tags": [
+            "PubRole"
+          ],
+          "summary": "删除角色",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubRole/GetFunctions/{code}": {
+        "post": {
+          "tags": [
+            "PubRole"
+          ],
+          "summary": "获取角色权限",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/StringIEnumerableDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubRole/SaveFunctions/{code}": {
+        "post": {
+          "tags": [
+            "PubRole"
+          ],
+          "summary": "保存角色权限",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubUser/GetAccess": {
+        "get": {
+          "tags": [
+            "PubUser"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/PubUser/GetPage": {
+        "post": {
+          "tags": [
+            "PubUser"
+          ],
+          "summary": "获取用户分页",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataReq"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataReq"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataReq"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataReq"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/V_Pubuser_DeptPageDateRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubUser/Add": {
+        "post": {
+          "tags": [
+            "PubUser"
+          ],
+          "summary": "添加用户",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V_Pubuser_Dept"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V_Pubuser_Dept"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V_Pubuser_Dept"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V_Pubuser_Dept"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubUser/Edit": {
+        "post": {
+          "tags": [
+            "PubUser"
+          ],
+          "summary": "编辑用户",
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V_Pubuser_Dept"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V_Pubuser_Dept"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V_Pubuser_Dept"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V_Pubuser_Dept"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubUser/Delete/{id}": {
+        "post": {
+          "tags": [
+            "PubUser"
+          ],
+          "summary": "删除用户",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubUser/GetFunctions/{code}": {
+        "post": {
+          "tags": [
+            "PubUser"
+          ],
+          "summary": "获取用户权限",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/StringIEnumerableDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubUser/SaveFunctions/{code}": {
+        "post": {
+          "tags": [
+            "PubUser"
+          ],
+          "summary": "保存用户权限",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BooleanDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PubUser/Logout": {
+        "post": {
+          "tags": [
+            "PubUser"
+          ],
+          "summary": "注销登录",
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/PubUser/GetModel/{id}": {
+        "post": {
+          "tags": [
+            "PubUser"
+          ],
+          "summary": "获取用户实体",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/V_Pubuser_DeptDataRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/Values": {
+        "get": {
+          "tags": [
+            "Values"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Values"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_User"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_User"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pub_User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/Values/{id}": {
+        "get": {
+          "tags": [
+            "Values"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Values"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "type": "string",
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Values"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/WeatherForecast": {
+        "get": {
+          "tags": [
+            "WeatherForecast"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WeatherForecast"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WeatherForecast"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WeatherForecast"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "LoginViewModel": {
+          "type": "object",
+          "properties": {
+            "userName": {
+              "type": "string",
+              "description": "账号",
+              "nullable": true
+            },
+            "password": {
+              "type": "string",
+              "description": "密码",
+              "nullable": true
+            },
+            "passwordKey": {
+              "type": "string",
+              "description": "密码键",
+              "nullable": true
+            },
+            "captchaId": {
+              "type": "string",
+              "description": "验证码Id",
+              "nullable": true
+            },
+            "captchaData": {
+              "type": "string",
+              "description": "验证码数据",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "BooleanIResultOutput": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "boolean",
+              "description": "返回数据",
+              "readOnly": true
+            },
+            "success": {
+              "type": "boolean",
+              "description": "是否成功",
+              "readOnly": true
+            },
+            "msg": {
+              "type": "string",
+              "description": "消息",
+              "nullable": true,
+              "readOnly": true
+            },
+            "code": {
+              "type": "string",
+              "description": "编码",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false,
+          "description": "泛型结果输出接口"
+        },
+        "Pub_Function": {
+          "type": "object",
+          "properties": {
+            "functionCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "functionEnglish": {
+              "type": "string",
+              "nullable": true
+            },
+            "functionChina": {
+              "type": "string",
+              "nullable": true
+            },
+            "functionDescrip": {
+              "type": "string",
+              "nullable": true
+            },
+            "parentCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "menuFlag": {
+              "type": "boolean"
+            },
+            "stopFlag": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "urlString": {
+              "type": "string",
+              "nullable": true
+            },
+            "editdate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "editor": {
+              "type": "string",
+              "nullable": true
+            },
+            "sortidx": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "target": {
+              "type": "string",
+              "nullable": true
+            },
+            "menuIcon": {
+              "type": "string",
+              "nullable": true
+            },
+            "routerPath": {
+              "type": "string",
+              "nullable": true
+            },
+            "isCache": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "isNewWindow": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "isOpen": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Pub_FunctionListIResultOutput": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Pub_Function"
+              },
+              "description": "返回数据",
+              "nullable": true,
+              "readOnly": true
+            },
+            "success": {
+              "type": "boolean",
+              "description": "是否成功",
+              "readOnly": true
+            },
+            "msg": {
+              "type": "string",
+              "description": "消息",
+              "nullable": true,
+              "readOnly": true
+            },
+            "code": {
+              "type": "string",
+              "description": "编码",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false,
+          "description": "泛型结果输出接口"
+        },
+        "CaptchaData": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "nullable": true
+            },
+            "backgroundImage": {
+              "type": "string",
+              "nullable": true
+            },
+            "sliderImage": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CaptchaDataIResultOutput": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/CaptchaData"
+            },
+            "success": {
+              "type": "boolean",
+              "description": "是否成功",
+              "readOnly": true
+            },
+            "msg": {
+              "type": "string",
+              "description": "消息",
+              "nullable": true,
+              "readOnly": true
+            },
+            "code": {
+              "type": "string",
+              "description": "编码",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false,
+          "description": "泛型结果输出接口"
+        },
+        "Track": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "y": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "t": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "SlideTrack": {
+          "type": "object",
+          "properties": {
+            "backgroundImageWidth": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "backgroundImageHeight": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "sliderImageWidth": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "sliderImageHeight": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "startTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "endTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "tracks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Track"
+              },
+              "nullable": true
+            },
+            "percent": {
+              "type": "number",
+              "format": "float",
+              "readOnly": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ValidateResultType": {
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer",
+          "format": "int32"
+        },
+        "ValidateResult": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/ValidateResultType"
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ValidateResultIResultOutput": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/ValidateResult"
+            },
+            "success": {
+              "type": "boolean",
+              "description": "是否成功",
+              "readOnly": true
+            },
+            "msg": {
+              "type": "string",
+              "description": "消息",
+              "nullable": true,
+              "readOnly": true
+            },
+            "code": {
+              "type": "string",
+              "description": "编码",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false,
+          "description": "泛型结果输出接口"
+        },
+        "ResCode": {
+          "enum": [
+            0,
+            1,
+            -1
+          ],
+          "type": "integer",
+          "format": "int32"
+        },
+        "Pub_Department": {
+          "type": "object",
+          "properties": {
+            "deptCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "deptName": {
+              "type": "string",
+              "nullable": true
+            },
+            "remark": {
+              "type": "string",
+              "nullable": true
+            },
+            "parentCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "deptLevel": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "lmid": {
+              "type": "string",
+              "nullable": true
+            },
+            "lmdt": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "stopFlag": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Pub_DepartmentListDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Pub_Department"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "V_Pubdept_Parent": {
+          "type": "object",
+          "properties": {
+            "deptCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "deptName": {
+              "type": "string",
+              "nullable": true
+            },
+            "remark": {
+              "type": "string",
+              "nullable": true
+            },
+            "parentCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "deptLevel": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "lmid": {
+              "type": "string",
+              "nullable": true
+            },
+            "lmdt": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "stopFlag": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "parentName": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "V_Pubdept_ParentListDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/V_Pubdept_Parent"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "BooleanDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Pub_FunctionListDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Pub_Function"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "V_Pubfunction_Parent": {
+          "type": "object",
+          "properties": {
+            "functionCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "functionEnglish": {
+              "type": "string",
+              "nullable": true
+            },
+            "functionChina": {
+              "type": "string",
+              "nullable": true
+            },
+            "functionDescrip": {
+              "type": "string",
+              "nullable": true
+            },
+            "parentCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "menuFlag": {
+              "type": "boolean"
+            },
+            "stopFlag": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "urlString": {
+              "type": "string",
+              "nullable": true
+            },
+            "editdate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "editor": {
+              "type": "string",
+              "nullable": true
+            },
+            "sortidx": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "target": {
+              "type": "string",
+              "nullable": true
+            },
+            "menuIcon": {
+              "type": "string",
+              "nullable": true
+            },
+            "parentName": {
+              "type": "string",
+              "nullable": true
+            },
+            "routerPath": {
+              "type": "string",
+              "nullable": true
+            },
+            "isCache": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "V_Pubfunction_ParentListDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/V_Pubfunction_Parent"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Meta": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string",
+              "description": "图标",
+              "nullable": true
+            },
+            "notCache": {
+              "type": "boolean",
+              "description": "不缓存",
+              "nullable": true
+            },
+            "title": {
+              "type": "string",
+              "description": "标题",
+              "nullable": true
+            },
+            "access": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "权限列表",
+              "nullable": true
+            },
+            "isNewWindow": {
+              "type": "boolean",
+              "description": "是否新窗口"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Menu": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "路由路径",
+              "nullable": true
+            },
+            "name": {
+              "type": "string",
+              "description": "名称",
+              "nullable": true
+            },
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Menu"
+              },
+              "description": "子组件",
+              "nullable": true
+            },
+            "component": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "MenuListDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Menu"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Pub_Role": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "roleCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "roleName": {
+              "type": "string",
+              "nullable": true
+            },
+            "remark": {
+              "type": "string",
+              "nullable": true
+            },
+            "stopFlag": {
+              "type": "boolean"
+            },
+            "crid": {
+              "type": "string",
+              "nullable": true
+            },
+            "crdt": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "lmid": {
+              "type": "string",
+              "nullable": true
+            },
+            "lmdt": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Pub_RoleListDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Pub_Role"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "PageDataReq": {
+          "type": "object",
+          "properties": {
+            "pageNum": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "pageSize": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "field": {
+              "type": "string",
+              "nullable": true
+            },
+            "order": {
+              "type": "string",
+              "nullable": true
+            },
+            "query": {
+              "type": "object",
+              "additionalProperties": { },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Pub_RolePageDateRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "count": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "totalPage": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Pub_Role"
+              },
+              "nullable": true
+            },
+            "pageNum": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "pageSize": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "StringIEnumerableDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "V_Pubuser_Dept": {
+          "type": "object",
+          "properties": {
+            "roleCodes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "userCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "userName": {
+              "type": "string",
+              "nullable": true
+            },
+            "realName": {
+              "type": "string",
+              "nullable": true
+            },
+            "userPwd": {
+              "type": "string",
+              "nullable": true
+            },
+            "sex": {
+              "type": "boolean"
+            },
+            "identityNo": {
+              "type": "string",
+              "nullable": true
+            },
+            "birthday": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "deptCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "managerFlag": {
+              "type": "boolean"
+            },
+            "tel": {
+              "type": "string",
+              "nullable": true
+            },
+            "eMail": {
+              "type": "string",
+              "nullable": true
+            },
+            "qq": {
+              "type": "string",
+              "nullable": true
+            },
+            "remark": {
+              "type": "string",
+              "nullable": true
+            },
+            "stopFlag": {
+              "type": "boolean"
+            },
+            "crid": {
+              "type": "string",
+              "nullable": true
+            },
+            "crdt": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "lmid": {
+              "type": "string",
+              "nullable": true
+            },
+            "lmdt": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "loginDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "provinceCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "cityCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "regionCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "userAddress": {
+              "type": "string",
+              "nullable": true
+            },
+            "wxcode": {
+              "type": "string",
+              "nullable": true
+            },
+            "headUrl": {
+              "type": "string",
+              "nullable": true
+            },
+            "userStatus": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "deptName": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "V_Pubuser_DeptPageDateRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "count": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "totalPage": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/V_Pubuser_Dept"
+              },
+              "nullable": true
+            },
+            "pageNum": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "pageSize": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "V_Pubuser_DeptDataRes": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "$ref": "#/components/schemas/ResCode"
+            },
+            "msg": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "$ref": "#/components/schemas/V_Pubuser_Dept"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Pub_User": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "userCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "userName": {
+              "type": "string",
+              "nullable": true
+            },
+            "realName": {
+              "type": "string",
+              "nullable": true
+            },
+            "userPwd": {
+              "type": "string",
+              "nullable": true
+            },
+            "sex": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "identityNo": {
+              "type": "string",
+              "nullable": true
+            },
+            "birthday": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "deptCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "managerFlag": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "tel": {
+              "type": "string",
+              "nullable": true
+            },
+            "eMail": {
+              "type": "string",
+              "nullable": true
+            },
+            "qq": {
+              "type": "string",
+              "nullable": true
+            },
+            "remark": {
+              "type": "string",
+              "nullable": true
+            },
+            "stopFlag": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "crid": {
+              "type": "string",
+              "nullable": true
+            },
+            "crdt": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "lmid": {
+              "type": "string",
+              "nullable": true
+            },
+            "lmdt": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "loginDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "provinceCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "cityCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "regionCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "userAddress": {
+              "type": "string",
+              "nullable": true
+            },
+            "wxcode": {
+              "type": "string",
+              "nullable": true
+            },
+            "headUrl": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "WeatherForecast": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "temperatureC": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "temperatureF": {
+              "type": "integer",
+              "format": "int32",
+              "readOnly": true
+            },
+            "summary": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "securitySchemes": {
+        "Bearer": {
+          "type": "apiKey",
+          "description": "直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
+    },
+    "security": [
+      {
+        "Bearer": [ ]
+      }
+    ]
+  }
